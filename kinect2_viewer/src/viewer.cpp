@@ -275,8 +275,11 @@ private:
         dispDepth(depth, depthDisp, 12000.0f);
         combine(color, depthDisp, combined);
         //combined = color;
-
+#if CV_MAJOR_VERSION == 4
+        cv::putText(combined, oss.str(), pos, font, sizeText, colorText, lineText, cv::LINE_AA);
+#else
         cv::putText(combined, oss.str(), pos, font, sizeText, colorText, lineText, CV_AA);
+#endif
         cv::imshow("Image Viewer", combined);
       }
 

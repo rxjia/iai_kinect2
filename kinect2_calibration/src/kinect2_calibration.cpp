@@ -109,8 +109,11 @@ public:
     {
       circleFlags = cv::CALIB_CB_ASYMMETRIC_GRID + cv::CALIB_CB_CLUSTERING;
     }
-
+#if CV_MAJOR_VERSION == 4
+    params.push_back(cv::IMWRITE_PNG_COMPRESSION);
+#else
     params.push_back(CV_IMWRITE_PNG_COMPRESSION);
+#endif
     params.push_back(9);
 
     board.resize(boardDims.width * boardDims.height);
